@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- This file defines the navigation structure of our app,
+including the start destination and all the possible paths that the user can navigate to. -->
+
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -15,11 +19,28 @@
         android:id="@+id/nav_gallery"
         android:name="com.example.pa.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_gallery">
+        <!-- Define the action for navigation -->
+        <action
+            android:id="@+id/action_gallery_to_user_input"
+            app:destination="@id/nav_user_input" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_user_input"
+        android:name="com.example.pa.ui.gallery.UserInputFragment"
+        android:label="@string/user_input"
+        tools:layout="@layout/fragment_user_input">
+        <!-- Define the action for navigation -->
+        <action
+            android:id="@+id/action_gallery_to_slideshow"
+            app:destination="@id/nav_slideshow" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.example.pa.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
 </navigation>

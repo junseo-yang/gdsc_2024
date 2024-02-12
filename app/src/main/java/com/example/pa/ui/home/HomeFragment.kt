@@ -1,6 +1,6 @@
 package com.example.pa.ui.home
 
-import android.R
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +12,7 @@ import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.pa.R
 import com.example.pa.databinding.FragmentHomeBinding
 import com.example.pa.ui.gallery.GalleryFragment
 
@@ -30,7 +31,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this)[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -40,17 +41,6 @@ class HomeFragment : Fragment() {
             textView.text = it
         }
 
-        val buttonNotPaid: Button = binding.btnNotPaid
-        buttonNotPaid.setOnClickListener {
-            // Code here executes on main thread after user presses button
-            // TODO：come back
-            findNavController().navigate(com.example.pa.R.id.fragment_gallery)
-        }
-        val buttonPaid: Button = binding.btnNotPaid
-        buttonPaid.setOnClickListener {
-            // Code here executes on main thread after user presses button
-            // TODO：come back
-        }
         return root
     }
 
