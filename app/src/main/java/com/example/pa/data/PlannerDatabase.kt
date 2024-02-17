@@ -1,3 +1,12 @@
+/*
+ * Project     :     Solution Challenge GDSC 2024
+ * Author      :
+ * Class       :     PlannerDatabse
+ * Description :     Abstract class to define the properties of the local database.
+ *                      The database is created and managed using Room Library.
+ *                      Room reference: https://developer.android.com/training/data-storage/room
+ */
+
 package com.example.pa.data
 
 import android.content.Context
@@ -5,6 +14,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
+// Define the database with the classes of each table
+// Assign a version for the database
 @Database(entities = arrayOf(Tasks::class), version = 1, exportSchema = false)
 public abstract class PlannerDatabase: RoomDatabase() {
 
