@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.pa.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:name="com.example.pa.ui.aigenerate.AiGenerateFragment"
+        android:label="@string/menu_ai_generate"
+        tools:layout="@layout/fragment_ai_generate" />
 </navigation>
