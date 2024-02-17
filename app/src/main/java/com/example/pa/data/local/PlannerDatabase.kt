@@ -16,7 +16,7 @@ import androidx.room.RoomDatabase
 
 // Define the database with the classes of each table
 // Assign a version for the database
-@Database(entities = arrayOf(Tasks::class), version = 1, exportSchema = false)
+@Database(entities = [Tasks::class], version = 1, exportSchema = false)
 public abstract class PlannerDatabase: RoomDatabase() {
 
     abstract fun taskDao(): TaskDao
