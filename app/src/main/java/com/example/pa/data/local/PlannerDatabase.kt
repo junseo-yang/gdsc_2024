@@ -1,13 +1,13 @@
 /*
  * Project     :     Solution Challenge GDSC 2024
  * Author      :
- * Class       :     PlannerDatabse
+ * Class       :     PlannerDatabase
  * Description :     Abstract class to define the properties of the local database.
  *                      The database is created and managed using Room Library.
  *                      Room reference: https://developer.android.com/training/data-storage/room
  */
 
-package com.example.pa.data
+package com.example.pa.data.local
 
 import android.content.Context
 import androidx.room.Database

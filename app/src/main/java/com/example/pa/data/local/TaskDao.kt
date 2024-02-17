@@ -7,7 +7,7 @@
  *                      Room reference: https://developer.android.com/training/data-storage/room
  */
 
-package com.example.pa.data
+package com.example.pa.data.local
 
 import androidx.room.Dao
 import androidx.room.Delete

@@ -9,6 +9,8 @@
 package com.example.pa.data
 
 import androidx.annotation.WorkerThread
+import com.example.pa.data.local.TaskDao
+import com.example.pa.data.local.Tasks
 import kotlinx.coroutines.flow.Flow
 
 class DatabaseRepository(private val taskDao: TaskDao) {

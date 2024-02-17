@@ -1,4 +1,4 @@
-package com.example.pa.data
+package com.example.pa.data.local
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
