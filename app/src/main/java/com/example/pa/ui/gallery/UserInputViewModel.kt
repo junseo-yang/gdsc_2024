@@ -8,7 +8,11 @@ import androidx.lifecycle.ViewModel
 class UserInputViewModel  : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = ""
+        value = "placeholder"
     }
     val text: LiveData<String> = _text
+
+    fun setDate(date: String) {
+        _text.value = date
+    }
 }

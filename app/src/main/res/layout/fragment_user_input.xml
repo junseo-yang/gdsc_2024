@@ -55,12 +55,38 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="LabelFor" />
 
+
+    <Button
+        android:id="@+id/pickDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:layout_marginStart="80dp"
+
+
+        android:text="@string/pick_date"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/task_deadline" />
+
+    <Button
+        android:id="@+id/pickTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/task_deadline"
+        android:layout_margin="50dp"
+        android:text="@string/pick_time"
+        tools:layout_editor_absoluteX="214dp"
+        tools:layout_editor_absoluteY="354dp" />
+
     <Button
         android:id="@+id/btn_create_task"
         android:layout_width="@dimen/btn_width"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="248sp"
+
         android:text="@string/create_task"
+        app:layout_constraintTop_toBottomOf="@id/pickDate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

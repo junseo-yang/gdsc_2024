@@ -41,13 +41,13 @@ class GalleryFragment : Fragment() {
         buttonNotPaid?.setOnClickListener {
             // Code here executes on main thread after user presses button
             // TODO：come back to check
-            findNavController().navigate(R.id.action_gallery_to_user_input)
+//            findNavController().navigate(R.id.action_gallery_to_user_input)
         }
         val buttonPaid = view?.findViewById<Button>(R.id.btn_paid)
         buttonPaid?.setOnClickListener {
             // Code here executes on main thread after user presses button
             // TODO：come back to check
-            findNavController().navigate(R.id.action_gallery_to_slideshow)  // or navigate to the AI fragment?
+//            findNavController().navigate(R.id.action_gallery_to_slideshow)  // or navigate to the AI fragment?
         }
 
 
