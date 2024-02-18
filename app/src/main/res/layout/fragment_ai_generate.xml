@@ -47,5 +47,15 @@
             android:layout_marginTop="50dp"
             android:layout_below="@+id/ai_generate_topic_input"
             android:text="@string/ai_generate_topic_button"/>
+
+        <TextView
+            android:id="@+id/ai_generate_response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:layout_below="@+id/ai_generate_button"
+            android:textSize="30sp"
+            android:text="@string/ai_generate_response_answer" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
