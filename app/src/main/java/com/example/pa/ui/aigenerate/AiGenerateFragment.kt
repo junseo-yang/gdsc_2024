@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.pa.R
 import com.example.pa.databinding.FragmentAiGenerateBinding
 
 class AiGenerateFragment : Fragment() {
@@ -21,11 +22,24 @@ class AiGenerateFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val slideshowViewModel =
+        val viewModel =
             ViewModelProvider(this).get(AiGenerateViewModel::class.java)
 
         _binding = FragmentAiGenerateBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        viewModel.text.observe(viewLifecycleOwner) { responseText ->
+            binding.aiGenerateResponse.text = responseText
+        }
+
+        binding.aiGenerateButton.setOnClickListener {
+            val userInput = binding.aiGenerateTopicInput.text.toString()
+            if (userInput.isNotEmpty()) {
+                viewModel.fetchChatCompletion(userInput)
+            } else {
+                binding.aiGenerateResponse.text = getString(R.string.ai_generate_topic_input_hint)
+            }
+        }
 
         return root
     }

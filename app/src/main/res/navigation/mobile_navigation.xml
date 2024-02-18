@@ -18,7 +18,7 @@
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_aiGenerate"
         android:name="com.example.pa.ui.aigenerate.AiGenerateFragment"
         android:label="@string/menu_ai_generate"
         tools:layout="@layout/fragment_ai_generate" />
