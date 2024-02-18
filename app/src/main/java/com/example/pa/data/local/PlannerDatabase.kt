@@ -13,11 +13,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
 // Define the database with the classes of each table
 // Assign a version for the database
 @Database(entities = [Tasks::class], version = 1, exportSchema = false)
-public abstract class PlannerDatabase: RoomDatabase() {
+@TypeConverters(LocalDateTimeConverters::class)
+abstract class PlannerDatabase: RoomDatabase() {
 
     abstract fun taskDao(): TaskDao
 
