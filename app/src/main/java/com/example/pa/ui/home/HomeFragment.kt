@@ -1,15 +1,24 @@
 package com.example.pa.ui.home
 
+
 import android.content.Intent
+import android.R
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.lifecycle.ViewModelProvider
 import com.example.pa.AiActivity
+import androidx.navigation.fragment.findNavController
 import com.example.pa.databinding.FragmentHomeBinding
+import com.example.pa.ui.gallery.GalleryFragment
+
 
 class HomeFragment : Fragment() {
 
@@ -35,8 +44,20 @@ class HomeFragment : Fragment() {
             textView.text = it
         }
 
+
         binding.buttonOpenAiActivity.setOnClickListener {
             startActivity(Intent(context, AiActivity::class.java))
+            
+        val buttonNotPaid: Button = binding.btnNotPaid
+        buttonNotPaid.setOnClickListener {
+            // Code here executes on main thread after user presses button
+            // TODO：come back
+            findNavController().navigate(com.example.pa.R.id.fragment_gallery)
+        }
+        val buttonPaid: Button = binding.btnNotPaid
+        buttonPaid.setOnClickListener {
+            // Code here executes on main thread after user presses button
+            // TODO：come back
         }
         return root
     }

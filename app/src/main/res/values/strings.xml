@@ -9,5 +9,12 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_ai_generate">Ai Generate</string>
+    <string name="type_in_manually">Type In Manually</string>
+    <string name="ai_generate">AI Generate</string>
+
+    <string name="ai_generate_title">AI Generate</string>
+    <string name="ai_generate_topic_title">Topic</string>
+    <string name="ai_generate_topic_input_hint">Enter your topic</string>
+    <string name="ai_generate_topic_button">Generate</string>
 </resources>
