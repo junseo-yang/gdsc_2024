@@ -2,12 +2,25 @@
     <string name="app_name">PA</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">AddMate</string>
+    <string name="nav_header_subtitle">A supportive community</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_home">Welcome</string>
+    <string name="menu_gallery">Create Manually</string>
+    <string name="menu_slideshow">AI Generate</string>
+    <string name="tell_me_the_task">Tell me the task</string>
+    <string name="create_manually">Create Manually</string>
+    <string name="btn_create_task">Create Task</string>
+    <string name="pick_start_date">Pick the start date</string>
+    <string name="pick_end_date">Pick the end date</string>
+    <string name="pick_date">Pick date</string>
+    <string name="pick_time">Pick time</string>
+    <string name="create_a_task_manually">Create a task manually</string>
+    <string name="task">Task:</string>
+    <string name="start_date">Start date:</string>
+    <string name="end_date">End date:</string>
+
+
 </resources>
