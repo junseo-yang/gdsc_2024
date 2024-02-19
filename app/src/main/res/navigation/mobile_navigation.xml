@@ -18,7 +18,7 @@ including the start destination and all the possible paths that the user can nav
 
     <fragment
         android:id="@+id/nav_create_manually"
-        android:name="com.example.pa.ui.gallery.UserInputFragment"
+        android:name="com.example.pa.ui.gallery.CreateManuallyFragment"
         android:label="@string/create_manually"
 
         tools:layout="@layout/fragment_create_manually" />

@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class UserInputViewModel  : ViewModel() {
+class CreateManuallyViewModel  : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = ""

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.gallery.UserInputFragment">
+    tools:context=".ui.gallery.CreateManuallyFragment">
 
     <TextView
         android:id="@+id/label_manual_create"
@@ -18,6 +18,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Task: -->
+    <TextView
+        android:id="@+id/task_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/input_padding"
+        android:text="@string/task"
+        android:textSize="@dimen/text_item_size"
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/start"
+        app:layout_constraintBottom_toBottomOf="@id/task_manual_input" />
+
     <EditText
         android:id="@+id/task_manual_input"
         android:layout_width="wrap_content"
@@ -27,24 +40,53 @@
         android:ems="10"
         android:inputType="text"
         android:hint="@string/tell_me_the_task"
+        android:textSize="@dimen/text_item_size"
         app:layout_constraintTop_toBottomOf="@id/label_manual_create"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/task_start_date"
         tools:ignore="LabelFor" />
 
+    <!-- Start date: -->
+    <TextView
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/input_padding"
+        android:layout_marginStart="@dimen/common_margin"
+        android:text="@string/start_date"
+        android:textSize="@dimen/text_item_size"
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/task_start_date" />
 
     <EditText
         android:id="@+id/task_start_date"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/input_height"
+        android:layout_marginStart="@dimen/common_margin"
         android:layout_marginTop="50sp"
+        android:layout_marginEnd="@dimen/common_margin"
         android:autofillHints="task"
         android:ems="10"
         android:hint="@string/pick_start_date"
+        android:textSize="@dimen/text_item_size"
+        android:cursorVisible="false"
         app:layout_constraintTop_toBottomOf="@id/task_manual_input"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="LabelFor" />
+        app:layout_constraintStart_toEndOf="@id/start"
+        android:inputType="date"  />
+
+    <!-- End date: -->
+    <TextView
+        android:id="@+id/end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/input_padding"
+        android:text="@string/end_date"
+        android:textSize="@dimen/text_item_size"
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/start"
+        app:layout_constraintBottom_toBottomOf="@id/task_end_date" />
 
     <EditText
         android:id="@+id/task_end_date"
@@ -54,10 +96,12 @@
         android:autofillHints="task"
         android:ems="10"
         android:hint="@string/pick_end_date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="@dimen/text_item_size"
+        android:cursorVisible="false"
+        app:layout_constraintStart_toStartOf="@id/task_start_date"
         app:layout_constraintTop_toBottomOf="@id/task_start_date"
-        tools:ignore="LabelFor" />
+        tools:ignore="LabelFor"
+        android:inputType="date" />
 
     <Button
         android:id="@+id/btn_create_task"

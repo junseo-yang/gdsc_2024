@@ -16,4 +16,7 @@
     <dimen name="btn_margin_bottom">150sp</dimen>
     <dimen name="btn_margin_start_end">40sp</dimen>
     <dimen name="input_height">60sp</dimen>
+    <dimen name="common_margin">30dp</dimen>
+    <dimen name="input_padding">12dp</dimen>
+    <dimen name="text_item_size">18sp</dimen>
 </resources>

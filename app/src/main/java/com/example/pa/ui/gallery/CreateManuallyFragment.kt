@@ -1,5 +1,6 @@
 package com.example.pa.ui.gallery
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,13 +11,10 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.pa.databinding.FragmentCreateManuallyBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.util.Calendar
 
 
-class UserInputFragment : Fragment() {
+class CreateManuallyFragment : Fragment() {
 
     // Declare a nullable variable to hold the ViewBinding object for this fragment
     private var _binding: FragmentCreateManuallyBinding? = null
@@ -24,9 +22,15 @@ class UserInputFragment : Fragment() {
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!  // Create a property to access the ViewBinding object with null-safety
 
+    private var endDateIsSet: Boolean = false
     private lateinit var taskEditText: EditText
     private lateinit var startDateEditText: EditText
     private lateinit var endDateEditText: EditText
+
+    // Initialize Calender instance to get current date
+    private lateinit var calendar: Calendar
+    private lateinit var pickedStartDate: Calendar
+    private lateinit var pickedEndDate: Calendar
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,9 +49,9 @@ class UserInputFragment : Fragment() {
         startDateEditText = binding.taskStartDate
         endDateEditText = binding.taskEndDate
 
-        // Initialize Calender instance to get current date
-        val calendar = Calendar.getInstance()
-        val pickedStartDate = Calendar.getInstance()
+        calendar = Calendar.getInstance()
+        pickedStartDate = Calendar.getInstance()
+        pickedEndDate = Calendar.getInstance()
 
         startDateEditText.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
@@ -59,7 +63,7 @@ class UserInputFragment : Fragment() {
                 // Create a new instance of DatePickerDialog and show it
                 val datePickerDialog = DatePickerDialog(
                     requireContext(),
-                    DatePickerDialog.OnDateSetListener { _: DatePicker, selectedYear: Int, selectedMonth: Int, selectedDayOfMonth: Int -> // This method is called when a date is selected
+                    { _: DatePicker, selectedYear: Int, selectedMonth: Int, selectedDayOfMonth: Int -> // This method is called when a date is selected
 
                         // set the picked Start Date
                         pickedStartDate.set(Calendar.YEAR, selectedYear)
@@ -67,8 +71,7 @@ class UserInputFragment : Fragment() {
                         pickedStartDate.set(Calendar.DAY_OF_MONTH, selectedDayOfMonth)
 
                         // Update the start date EditText to show the selected date
-                        /* In Calendar class (and consequently in DatePicker), months are zero-based.
-                                 This means January is 0 */
+                        /* In Calendar class (and consequently in DatePicker), months are zero-based. January is 0 */
                         val pickedDate: String =
                             selectedYear.toString() + "-" + (selectedMonth + 1) + "-" + selectedDayOfMonth
 
@@ -79,21 +82,33 @@ class UserInputFragment : Fragment() {
 
                 // Set the minimum selectable date to the current date (no past dates)
                 datePickerDialog.datePicker.minDate = calendar.timeInMillis
+
+                if (endDateIsSet) {
+                    datePickerDialog.datePicker.maxDate = pickedEndDate.timeInMillis
+                }
+
                 datePickerDialog.show()
             }
         }
 
         endDateEditText.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                // Get the current year, month, and day from the calendar
-                val year = calendar[Calendar.YEAR]
-                val month = calendar[Calendar.MONTH]
+                // Get the start date's year, month, and day
+                val year = pickedStartDate[Calendar.YEAR]
+                val month = pickedStartDate[Calendar.MONTH]
                 val day = pickedStartDate[Calendar.DAY_OF_MONTH]
 
                 // Create a new instance of DatePickerDialog and show it
                 val datePickerDialog = DatePickerDialog(
                     requireContext(),
-                    DatePickerDialog.OnDateSetListener { _: DatePicker, selectedYear: Int, selectedMonth: Int, selectedDayOfMonth: Int -> // This method is called when a date is selected
+                    { _: DatePicker, selectedYear: Int, selectedMonth: Int, selectedDayOfMonth: Int -> // This method is called when a date is selected
+
+                        endDateIsSet = true // indicate the end date is set
+
+                        // set the picked Start Date
+                        pickedEndDate.set(Calendar.YEAR, selectedYear)
+                        pickedEndDate.set(Calendar.MONTH, selectedMonth)
+                        pickedEndDate.set(Calendar.DAY_OF_MONTH, selectedDayOfMonth)
 
                         // Update the end date EditText to show the selected date
                         val pickedDate: String =
@@ -125,16 +140,36 @@ class UserInputFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                // show a toast message indicating task created
-                Toast.makeText(
-                    requireContext(),
-                    "Congrats! A new task created!",
-                    Toast.LENGTH_SHORT
-                ).show()
 
-                // TODO：call processInput() to insert data to database
-                /*val databaseRepository = DatabaseRepository(PlannerDatabase.getDatabase(applicationContext).taskDao())
-                processInput(databaseRepository)*/
+
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle("Confirmation")
+                builder.setMessage("Please confirm the task")
+
+                // Set up the buttons
+                builder.setPositiveButton("Confirm") { _, _ ->
+                    // User clicked Yes button
+                    // show a toast message indicating task created
+                    Toast.makeText(
+                        requireContext(),
+                        "Congrats! A new task created!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    // TODO：call processInput() to insert data to database
+                    /*val databaseRepository = DatabaseRepository(PlannerDatabase.getDatabase(applicationContext).taskDao())
+                    processInput(databaseRepository)*/
+
+                    reset()    // clean inputs
+                }
+
+                builder.setNegativeButton("Back") { _, _ ->
+                    // Do nothing when the user clicks No
+                }
+
+                // Create and show the dialog
+                val dialog = builder.create()
+                dialog.show()
             }
 
         }
@@ -157,6 +192,7 @@ class UserInputFragment : Fragment() {
         return status
     }
 
+
     // TODO：insert data to database
     /*private fun processInput(databaseRepository: DatabaseRepository) {
 
@@ -174,6 +210,17 @@ class UserInputFragment : Fragment() {
             databaseRepository.insert(newTask)
         }
     }*/
+
+    private fun reset() {
+        taskEditText.text.clear()
+        startDateEditText.text.clear()
+        endDateEditText.text.clear()
+
+        calendar = Calendar.getInstance()
+        pickedStartDate = Calendar.getInstance()
+        pickedEndDate = Calendar.getInstance()
+        endDateIsSet = false
+    }
 
 
     override fun onDestroyView() {
