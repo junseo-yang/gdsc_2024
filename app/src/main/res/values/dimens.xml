@@ -13,7 +13,7 @@
     <dimen name="nav_header_height">176sp</dimen>
     <dimen name="fab_margin">16sp</dimen>
     <dimen name="btn_width">155sp</dimen>
-    <dimen name="btn_margin_bottom">250sp</dimen>
+    <dimen name="btn_margin_bottom">150sp</dimen>
     <dimen name="btn_margin_start_end">40sp</dimen>
     <dimen name="input_height">60sp</dimen>
 </resources>

@@ -18,7 +18,7 @@ class HomeViewModel : ViewModel() {
                   It's used for propagating changes to UI components in a lifecycle-aware manner.
     */
     private val _text = MutableLiveData<String>().apply {
-        value = "Welcome"
+        value = "\nAddMate\n\n\nA supportive community\n\nwe are building for you :)"
     }
     val text: LiveData<String> = _text
 }

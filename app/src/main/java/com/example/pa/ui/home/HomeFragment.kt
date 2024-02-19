@@ -5,16 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import com.example.pa.R
 import com.example.pa.databinding.FragmentHomeBinding
-import com.example.pa.ui.gallery.GalleryFragment
 
 
 class HomeFragment : Fragment() {
