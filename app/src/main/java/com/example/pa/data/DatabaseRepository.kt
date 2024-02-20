@@ -8,6 +8,7 @@
  */
 package com.example.pa.data
 
+import android.util.Log
 import androidx.annotation.WorkerThread
 import com.example.pa.data.local.TaskDao
 import com.example.pa.data.local.Tasks
@@ -23,5 +24,7 @@ class DatabaseRepository(private val taskDao: TaskDao) {
     @WorkerThread
     suspend fun insert(task: Tasks) {
         taskDao.insert(task)
+        Log.d("DatabaseLog", "Insert database: $task")
+
     }
 }

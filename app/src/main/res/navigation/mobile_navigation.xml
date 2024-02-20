@@ -13,21 +13,17 @@ including the start destination and all the possible paths that the user can nav
         android:id="@+id/nav_home"
         android:name="com.example.pa.ui.home.HomeFragment"
         android:label="@string/menu_home"
-
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_create_manually"
         android:name="com.example.pa.ui.gallery.CreateManuallyFragment"
         android:label="@string/create_manually"
-
         tools:layout="@layout/fragment_create_manually" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.pa.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-
-        tools:layout="@layout/fragment_slideshow" />
-
+        android:id="@+id/nav_aiGenerate"
+        android:name="com.example.pa.ui.aigenerate.AiGenerateFragment"
+        android:label="@string/menu_ai_generate"
+        tools:layout="@layout/fragment_ai_generate" />
 </navigation>
