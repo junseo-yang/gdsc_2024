@@ -1,13 +1,15 @@
-package com.example.pa.ui.slideshow
+// This ViewModel is just in case
+package com.example.pa.ui.gallery
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SlideshowViewModel : ViewModel() {
+class CreateManuallyViewModel  : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is slideshow Fragment"
+        value = ""
     }
     val text: LiveData<String> = _text
+
 }

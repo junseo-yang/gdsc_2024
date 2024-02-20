@@ -1,8 +1,22 @@
+<!--Design
+    When design a user interface, we should:
+
+    Define text sizes in units of scale-independent pixels (sp), not sp, px, or others.
+    Avoid using tiny text that's difficult for some users to read.
+    Avoid text content with a fixed height and width. Prefer responsive layouts that can readily accommodate different screen sizes, screen orientations, pixel densities, and font sizes.
+-->
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="nav_header_vertical_spacing">8dp</dimen>
-    <dimen name="nav_header_height">176dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">16sp</dimen>
+    <dimen name="activity_vertical_margin">16sp</dimen>
+    <dimen name="nav_header_vertical_spacing">8sp</dimen>
+    <dimen name="nav_header_height">176sp</dimen>
+    <dimen name="fab_margin">16sp</dimen>
+    <dimen name="btn_width">155sp</dimen>
+    <dimen name="btn_margin_bottom">150sp</dimen>
+    <dimen name="btn_margin_start_end">40sp</dimen>
+    <dimen name="input_height">60sp</dimen>
+    <dimen name="common_margin">30dp</dimen>
+    <dimen name="input_padding">12dp</dimen>
+    <dimen name="text_item_size">18sp</dimen>
 </resources>
