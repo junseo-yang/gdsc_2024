@@ -10,7 +10,15 @@ import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.pa.data.DatabaseRepository
+import com.example.pa.data.local.PlannerDatabase
+import com.example.pa.data.local.Tasks
 import com.example.pa.databinding.FragmentCreateManuallyBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 
 
@@ -72,9 +80,7 @@ class CreateManuallyFragment : Fragment() {
 
                         // Update the start date EditText to show the selected date
                         /* In Calendar class (and consequently in DatePicker), months are zero-based. January is 0 */
-                        val pickedDate: String =
-                            selectedYear.toString() + "-" + (selectedMonth + 1) + "-" + selectedDayOfMonth
-
+                        val pickedDate = String.format("%d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDayOfMonth)
                         startDateEditText.setText(pickedDate)
 
                     }, year, month, day
@@ -111,9 +117,8 @@ class CreateManuallyFragment : Fragment() {
                         pickedEndDate.set(Calendar.DAY_OF_MONTH, selectedDayOfMonth)
 
                         // Update the end date EditText to show the selected date
-                        val pickedDate: String =
-                            selectedYear.toString() + "-" + (selectedMonth + 1) + "-" + selectedDayOfMonth
-
+                        // In Calendar class (and consequently in DatePicker), months are zero-based. January is 0
+                        val pickedDate = String.format("%d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDayOfMonth)
                         endDateEditText.setText(pickedDate)
 
                     }, year, month, day
@@ -126,6 +131,7 @@ class CreateManuallyFragment : Fragment() {
             }
         }
 
+        val databaseRepository = DatabaseRepository(PlannerDatabase.getDatabase(requireContext().applicationContext).taskDao())
 
         val buttonCreateTask =
             binding.btnCreateTask // Access the Button view using the binding object
@@ -149,16 +155,15 @@ class CreateManuallyFragment : Fragment() {
                 // Set up the buttons
                 builder.setPositiveButton("Confirm") { _, _ ->
                     // User clicked Yes button
+                    // Call processInput() to insert data to database
+                    processInput(databaseRepository)
+
                     // show a toast message indicating task created
                     Toast.makeText(
                         requireContext(),
                         "Congrats! A new task created!",
                         Toast.LENGTH_SHORT
                     ).show()
-
-                    // TODO：call processInput() to insert data to database
-                    /*val databaseRepository = DatabaseRepository(PlannerDatabase.getDatabase(applicationContext).taskDao())
-                    processInput(databaseRepository)*/
 
                     reset()    // clean inputs
                 }
@@ -193,23 +198,27 @@ class CreateManuallyFragment : Fragment() {
     }
 
 
-    // TODO：insert data to database
-    /*private fun processInput(databaseRepository: DatabaseRepository) {
+    // Insert data to database
+    private fun processInput(databaseRepository: DatabaseRepository) {
+
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val startDateInput = LocalDate.parse(startDateEditText.text.toString(), formatter)
+        val endDateInput = LocalDate.parse(endDateEditText.text.toString(), formatter)
 
         // Create a new task object without specifying taskId
         val newTask = Tasks(
             taskInput = taskEditText.text.toString(), // Provide the task description
-            startDatetime = startDateEditText.text.toString(), // Use current date and time
-            endDate = endDateEditText.text.toString(),
-            // taskDuration = 0, // Provide the task duration
-            isTaskComplete = false // Indicate if the task is complete or not
+            startDate = startDateInput,// Use current date and time
+            endDate = endDateInput,
+            isTaskComplete = false, // Indicate if the task is complete or not
+            taskId = 0,
         )
 
         // Start a coroutine to insert the task into the database
         CoroutineScope(Dispatchers.IO).launch {
             databaseRepository.insert(newTask)
         }
-    }*/
+    }
 
     private fun reset() {
         taskEditText.text.clear()
@@ -221,7 +230,6 @@ class CreateManuallyFragment : Fragment() {
         pickedEndDate = Calendar.getInstance()
         endDateIsSet = false
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
