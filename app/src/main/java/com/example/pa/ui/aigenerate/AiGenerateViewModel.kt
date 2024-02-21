@@ -37,8 +37,8 @@ class AiGenerateViewModel(private val repository: DatabaseRepository) : ViewMode
             taskId = 0,
             taskInput = topic,
             startDate = startDate,
-            taskDuration = taskDuration,
-            isTaskComplete = false
+            isTaskComplete = false,
+            endDate = LocalDate.now(),  // TODO add value of end date
         )
         viewModelScope.launch {
             repository.insert(task)
