@@ -9,8 +9,8 @@ import java.time.LocalDate
 data class Tasks(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "task_id") val taskId: Int,
     @ColumnInfo(name = "task_description") val taskInput: String?,
-    @ColumnInfo(name = "start_date_time") val startDate: LocalDate, //TODO: check SQLite data for datetime
-    @ColumnInfo(name = "task_duration") val taskDuration: Int,
+    @ColumnInfo(name = "start_date_time") val startDate: LocalDate,
+    @ColumnInfo(name = "end_date") val endDate: LocalDate,
     @ColumnInfo(name = "task_complete") val isTaskComplete: Boolean
 )
 
