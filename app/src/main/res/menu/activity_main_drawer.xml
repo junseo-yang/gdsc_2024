@@ -19,5 +19,11 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_ai_generate"
             android:textColor="@color/font_dark_blue"/>
+
+        <item
+            android:id="@+id/nav_tasks_list"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_tasks"
+            android:textColor="@color/font_dark_blue"/>
     </group>
 </menu>

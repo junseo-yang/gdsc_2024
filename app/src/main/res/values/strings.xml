@@ -10,6 +10,7 @@
     <string name="menu_home">Welcome</string>
     <string name="menu_gallery">Create Manually</string>
     <string name="menu_ai_generate">AI Generate</string>
+    <string name="menu_tasks">Your Tasks</string>
     <string name="tell_me_the_task">Tell me the task</string>
     <string name="create_manually">Create Manually</string>
     <string name="btn_create_task">Create Task</string>
