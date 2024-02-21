@@ -10,16 +10,30 @@
 package com.example.pa.data.local
 
 import android.content.Context
+import androidx.room.AutoMigration
 import androidx.room.Database
+import androidx.room.DeleteColumn
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.room.migration.AutoMigrationSpec
 
 // Define the database with the classes of each table
 // Assign a version for the database
-@Database(entities = [Tasks::class], version = 1, exportSchema = false)
+@Database(entities = [Tasks::class], version = 3,
+    exportSchema = true,
+    autoMigrations = [
+        AutoMigration (
+            from = 2,
+            to = 3,
+            spec = PlannerDatabase.SetAutoMigration::class
+            )
+    ]
+)
 @TypeConverters(LocalDateTimeConverters::class)
 abstract class PlannerDatabase: RoomDatabase() {
+    @DeleteColumn("tasks_table", "task_duration")
+    class SetAutoMigration: AutoMigrationSpec
 
     abstract fun taskDao(): TaskDao
 
@@ -35,7 +49,9 @@ abstract class PlannerDatabase: RoomDatabase() {
                     context.applicationContext,
                     PlannerDatabase::class.java,
                     "planner_database"
-                ).build()
+                )
+                    //.fallbackToDestructiveMigration() // Only uncomment this line if you need to change the database without migration
+                    .build()
                 INSTANCE = instance
                 instance
             }
