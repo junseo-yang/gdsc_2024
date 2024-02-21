@@ -35,4 +35,5 @@
         android:layout_height="wrap_content"
         android:textColor="@color/font_dark_blue"
         android:text="@string/nav_header_subtitle" />
+
 </LinearLayout>

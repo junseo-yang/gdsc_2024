@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.pa.R
 import com.example.pa.data.DatabaseRepository
 import com.example.pa.data.local.PlannerDatabase
 import com.example.pa.databinding.FragmentAiGenerateBinding
@@ -20,44 +19,38 @@ class AiGenerateFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        restorePreviousState: Bundle?
+        savedInstanceState: Bundle?
     ): View {
+        // Initialize the database and repository
         val database = PlannerDatabase.getDatabase(requireContext())
         val repository = DatabaseRepository(database.taskDao())
-        val factory = AiGenerateViewData(repository)
 
-        viewModel = ViewModelProvider(this, factory).get(AiGenerateViewModel::class.java)
-
-
-        _binding = FragmentAiGenerateBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        // Use ViewModelProvider to instantiate the ViewModel
+        viewModel = ViewModelProvider(this, AiGenerateViewData(repository))
+            .get(AiGenerateViewModel::class.java)
 
         viewModel.text.observe(viewLifecycleOwner) { responseText ->
             binding.aiGenerateResponse.text = responseText
         }
 
-        binding.aiGenerateButton.setOnClickListener {
-            val topicInput = binding.aiGenerateTopicInput.text.toString()
-            val dateInput = binding.aiGenerateDateInput.text.toString()
-            val durationInput = binding.aiGenerateDurationInput.text.toString()
+        // Inflate the layout for this fragment
+        _binding = FragmentAiGenerateBinding.inflate(inflater, container, false)
 
-            if (topicInput.isNotEmpty() && dateInput.isNotEmpty() && durationInput.isNotEmpty()) {
-                val durationInt = durationInput.filter { it.isDigit() }.toIntOrNull() ?: 0
-                viewModel.fetchChatCompletion(topicInput, dateInput, durationInt)
-                viewModel.insertTask(topicInput, dateInput, durationInt)
 
-            } else {
-                binding.aiGenerateResponse.text = getString(R.string.ai_generate_topic_input_hint)
 
-            }
+        // Return the root view
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.text.observe(viewLifecycleOwner) { responseText ->
+            binding.aiGenerateResponse.text = responseText
         }
-
-        return root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        _binding = null  // Clean up the binding when the view is destroyed
     }
 }

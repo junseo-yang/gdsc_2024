@@ -27,9 +27,10 @@ import androidx.room.migration.AutoMigrationSpec
             from = 2,
             to = 3,
             spec = PlannerDatabase.SetAutoMigration::class
-            )
+        )
     ]
 )
+
 @TypeConverters(LocalDateTimeConverters::class)
 abstract class PlannerDatabase: RoomDatabase() {
     @DeleteColumn("tasks_table", "task_duration")

@@ -9,10 +9,12 @@
 
     <string name="menu_home">Welcome</string>
     <string name="menu_gallery">Create Manually</string>
-    <string name="menu_ai_generate">AI Generate</string>
+    <string name="menu_task_list">List</string>
     <string name="tell_me_the_task">Tell me the task</string>
+
+    <string name="btn_general_task">General</string>
     <string name="create_manually">Create Manually</string>
-    <string name="btn_create_task">Create Task</string>
+    <string name="btn_add_task">Add Task</string>
     <string name="pick_start_date">Pick the start date</string>
     <string name="pick_end_date">Pick the end date</string>
     <string name="pick_date">Pick date</string>
@@ -25,12 +27,6 @@
     <string name="type_in_manually">Type In Manually</string>
     <string name="ai_generate">AI Generate</string>
 
-    <string name="ai_generate_title">AI Generate</string>
-    <string name="ai_generate_topic_title">Topic</string>
-    <string name="ai_generate_topic_input_hint">Enter your topic</string>
-    <string name="ai_generate_topic_button">Generate</string>
-    <string name="ai_generate_date_input_hint">Date (yyyy-mm-dd)</string>
-    <string name="ai_generate_duration_input_hint">Duration</string>
-    <string name="ai_generate_response_answer">Awaiting AI response...</string>
+    <string name="ai_generate_response_answer">Waiting AI response...</string>
 
 </resources>

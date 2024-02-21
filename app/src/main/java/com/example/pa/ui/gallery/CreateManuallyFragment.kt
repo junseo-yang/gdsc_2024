@@ -10,10 +10,15 @@ import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.pa.R
 import com.example.pa.data.DatabaseRepository
 import com.example.pa.data.local.PlannerDatabase
 import com.example.pa.data.local.Tasks
 import com.example.pa.databinding.FragmentCreateManuallyBinding
+import com.example.pa.ui.aigenerate.AiGenerateViewData
+import com.example.pa.ui.aigenerate.AiGenerateViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,11 +45,15 @@ class CreateManuallyFragment : Fragment() {
     private lateinit var pickedStartDate: Calendar
     private lateinit var pickedEndDate: Calendar
 
+    private val aiGenerateViewModel: AiGenerateViewModel by viewModels {
+        AiGenerateViewData(DatabaseRepository(PlannerDatabase.getDatabase(requireContext().applicationContext).taskDao()))
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
 
         // Inflate the layout and initialize the ViewBinding object
         _binding = FragmentCreateManuallyBinding.inflate(inflater, container, false)
@@ -60,6 +69,7 @@ class CreateManuallyFragment : Fragment() {
         calendar = Calendar.getInstance()
         pickedStartDate = Calendar.getInstance()
         pickedEndDate = Calendar.getInstance()
+
 
         startDateEditText.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
@@ -146,31 +156,37 @@ class CreateManuallyFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
+                val topic = taskEditText.text.toString()
+                val startDateText = startDateEditText.text.toString()
+                val endDateText = endDateEditText.text.toString()
+
+                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                val startDate = LocalDate.parse(startDateText, formatter)
+                val endDate = LocalDate.parse(endDateText, formatter)
 
 
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setTitle("Confirmation")
                 builder.setMessage("Please confirm the task")
 
-                // Set up the buttons
                 builder.setPositiveButton("Confirm") { _, _ ->
-                    // User clicked Yes button
-                    // Call processInput() to insert data to database
+                    // Process input and fetch AI completion
                     processInput(databaseRepository)
+                    // Fetch AI completion
+                    aiGenerateViewModel.fetchChatCompletion(topic, startDate, endDate)
 
-                    // show a toast message indicating task created
-                    Toast.makeText(
-                        requireContext(),
-                        "Congrats! A new task created!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    // Observe the AI response and navigate when it arrives
+                    aiGenerateViewModel.text.observe(viewLifecycleOwner) { responseText ->
+                        if (responseText.isNotEmpty()) {
+                            navigateToAiGenerateFragment()
+                        }
+                    }
+
 
                     reset()    // clean inputs
                 }
 
-                builder.setNegativeButton("Back") { _, _ ->
-                    // Do nothing when the user clicks No
-                }
+
 
                 // Create and show the dialog
                 val dialog = builder.create()
@@ -182,6 +198,10 @@ class CreateManuallyFragment : Fragment() {
         return root     // Return the root view of the fragment layout
     }
 
+    private fun navigateToAiGenerateFragment() {
+        findNavController().navigate(R.id.nav_aiGenerate)
+
+    }
 
     private fun validateInput(): Boolean {
         // get input value
@@ -210,8 +230,7 @@ class CreateManuallyFragment : Fragment() {
             taskInput = taskEditText.text.toString(), // Provide the task description
             startDate = startDateInput,// Use current date and time
             endDate = endDateInput,
-            isTaskComplete = false, // Indicate if the task is complete or not
-            taskId = 0,
+            isTaskComplete = false
         )
 
         // Start a coroutine to insert the task into the database

@@ -15,9 +15,9 @@
             android:title="@string/menu_gallery"
             android:textColor="@color/font_dark_blue"/>
         <item
-            android:id="@+id/nav_aiGenerate"
+            android:id="@+id/nav_taskList"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_ai_generate"
+            android:title="@string/menu_task_list"
             android:textColor="@color/font_dark_blue"/>
     </group>
 </menu>

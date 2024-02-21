@@ -11,79 +11,24 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/aigenerate_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:textAlignment="center"
-            android:textSize="50sp"
-            android:text="@string/ai_generate_title" />
-
-        <TextView
-            android:id="@+id/ai_generate_topic_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/aigenerate_title"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="@string/ai_generate_topic_title"
-            android:textSize="30sp" />
-        <EditText
-            android:id="@+id/ai_generate_topic_input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:layout_below="@+id/ai_generate_topic_title"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:hint="@string/ai_generate_topic_input_hint" />
-
-        <EditText
-            android:id="@+id/ai_generate_date_input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:layout_below="@+id/ai_generate_topic_input"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:hint="@string/ai_generate_date_input_hint" />
-
-        <EditText
-            android:id="@+id/ai_generate_duration_input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:layout_below="@+id/ai_generate_date_input"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:hint="@string/ai_generate_duration_input_hint" />
-
-
-        <Button
-            android:id="@+id/ai_generate_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/ai_generate_duration_input"
-            android:text="@string/ai_generate_topic_button"/>
-
-
-        <TextView
             android:id="@+id/ai_generate_response"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:layout_below="@+id/ai_generate_button"
-            android:textSize="10sp"
+            android:layout_marginTop="72dp"
+            android:textSize="25sp"
             android:text="@string/ai_generate_response_answer"/>
+
+        <Button
+            android:id="@+id/btn_add_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ai_generate_response"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="570dp"
+            android:layout_marginTop="243dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="570dp"
+            android:text="@string/btn_add_task" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
