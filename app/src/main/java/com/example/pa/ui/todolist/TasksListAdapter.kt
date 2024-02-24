@@ -59,11 +59,15 @@ class TasksListAdapter(): ListAdapter<Tasks, TasksListAdapter.ItemViewHolder>(CH
     companion object {
         private val CHECK_TASKS = object : DiffUtil.ItemCallback<Tasks>() {
             override fun areItemsTheSame(oldItem: Tasks, newItem: Tasks): Boolean {
-                TODO("Not yet implemented")
+                return oldItem === newItem
             }
 
             override fun areContentsTheSame(oldItem: Tasks, newItem: Tasks): Boolean {
-                TODO("Not yet implemented")
+                return oldItem.taskInput.equals(newItem.taskInput)&&
+                        oldItem.taskId == newItem.taskId &&
+                        oldItem.startDate == newItem.startDate &&
+                        oldItem.isTaskComplete == newItem.isTaskComplete &&
+                        oldItem.endDate == newItem.endDate
             }
         }
     }
