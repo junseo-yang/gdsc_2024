@@ -24,10 +24,10 @@
     <img src="app/src/main/res/drawable/app_logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">PA (Planning Assistant)</h3>
+<h3 align="center">AddMate</h3>
 
   <p align="center">
-    An Planning App with AI Assistant
+    A Planning App with AI Assistant
     <br />
     <a href="https://github.com/junseo-yang/gdsc_2024"><strong>Explore the docs »</strong></a>
     <br />

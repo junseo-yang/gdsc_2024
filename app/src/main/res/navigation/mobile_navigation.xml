@@ -26,4 +26,10 @@ including the start destination and all the possible paths that the user can nav
         android:name="com.example.pa.ui.aigenerate.AiGenerateFragment"
         android:label="@string/menu_ai_generate"
         tools:layout="@layout/fragment_ai_generate" />
+
+    <fragment
+        android:id="@+id/nav_tasks_list"
+        android:name="com.example.pa.ui.todolist.TasksListFragment"
+        android:label="@string/menu_tasks"
+        tools:layout="@layout/fragment_tasks_list" />
 </navigation>

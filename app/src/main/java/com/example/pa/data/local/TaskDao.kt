@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TaskDao {
-    @Query ("SELECT * FROM tasks_table ORDER BY start_date_time")
+    @Query ("SELECT * FROM tasks_table ORDER BY end_date")
     fun getAllTasks(): Flow<List<Tasks>>
 
     @Insert
