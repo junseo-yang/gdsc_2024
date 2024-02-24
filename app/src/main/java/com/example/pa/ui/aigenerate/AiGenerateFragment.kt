@@ -38,13 +38,12 @@ class AiGenerateFragment : Fragment() {
 
         binding.aiGenerateButton.setOnClickListener {
             val topicInput = binding.aiGenerateTopicInput.text.toString()
-            val dateInput = binding.aiGenerateDateInput.text.toString()
-            val durationInput = binding.aiGenerateDurationInput.text.toString()
+            val startdateInput = binding.aiGenerateStartDateInput.text.toString()
+            val endDateInput = binding.aiGenerateEndDateInput.text.toString()
 
-            if (topicInput.isNotEmpty() && dateInput.isNotEmpty() && durationInput.isNotEmpty()) {
-                val durationInt = durationInput.filter { it.isDigit() }.toIntOrNull() ?: 0
-                viewModel.fetchChatCompletion(topicInput, dateInput, durationInt)
-                viewModel.insertTask(topicInput, dateInput, durationInt)
+            if (topicInput.isNotEmpty() && startdateInput.isNotEmpty() && endDateInput.isNotEmpty()) {
+                viewModel.fetchChatCompletion(topicInput, startdateInput, endDateInput)
+                viewModel.insertTask(topicInput, startdateInput, endDateInput)
 
             } else {
                 binding.aiGenerateResponse.text = getString(R.string.ai_generate_topic_input_hint)

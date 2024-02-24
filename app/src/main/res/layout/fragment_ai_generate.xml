@@ -42,7 +42,7 @@
             android:hint="@string/ai_generate_topic_input_hint" />
 
         <EditText
-            android:id="@+id/ai_generate_date_input"
+            android:id="@+id/ai_generate_startDate_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -51,19 +51,19 @@
             android:textAlignment="center"
             android:textSize="20sp"
             android:gravity="center"
-            android:hint="@string/ai_generate_date_input_hint" />
+            android:hint="@string/ai_generate_startDate_input_hint" />
 
         <EditText
-            android:id="@+id/ai_generate_duration_input"
+            android:id="@+id/ai_generate_endDate_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
-            android:layout_below="@+id/ai_generate_date_input"
+            android:layout_below="@+id/ai_generate_startDate_input"
             android:textAlignment="center"
             android:textSize="20sp"
             android:gravity="center"
-            android:hint="@string/ai_generate_duration_input_hint" />
+            android:hint="@string/ai_generate_endDate_input_hint" />
 
 
         <Button
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:layout_below="@+id/ai_generate_duration_input"
+            android:layout_below="@+id/ai_generate_endDate_input"
             android:text="@string/ai_generate_topic_button"/>
 
 
