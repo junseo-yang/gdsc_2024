@@ -24,13 +24,12 @@ class AiGenerateViewModel(private val repository: DatabaseRepository) : ViewMode
 
     private val _text = MutableLiveData<String>()
     val text: LiveData<String> = _text
-    fun insertTask(topic: String, startDate: String, duration: Int) {
+    fun insertTask(topic: String, startDate: String, endDate: String) {
         // Convert the start date from String to LocalDateTime
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val startDate = LocalDate.parse(startDate, formatter)
+        val endDate = LocalDate.parse(endDate, formatter)
 
-        // Convert duration from String to Integer
-        val taskDuration = duration
 
         // Create the Tasks entity
         val task = Tasks(
@@ -38,17 +37,17 @@ class AiGenerateViewModel(private val repository: DatabaseRepository) : ViewMode
             taskInput = topic,
             startDate = startDate,
             isTaskComplete = false,
-            endDate = LocalDate.now(),  // TODO add value of end date
+            endDate = endDate,  // TODO add value of end date
         )
         viewModelScope.launch {
             repository.insert(task)
         }
     }
         @OptIn(BetaOpenAI::class)
-    fun fetchChatCompletion(topic: String, date: String, duration: Int) {
+    fun fetchChatCompletion(topic: String, startDate: String, endDate: String) {
         viewModelScope.launch {
-            val schedule = "Create a schedule for the following details: " +
-                    "Topic - $topic, Date - $date, Duration - $duration weeks."
+            val schedule = "Please make a topic schedule with a detail hourly through out the day within the range of Start Date and End Date: " +
+                    "Topic - $topic, Start Date - $startDate, End Date - $endDate."
             val chatCompletionRequest = ChatCompletionRequest(
                 model = ModelId("gpt-3.5-turbo"),
                 messages = listOf(
