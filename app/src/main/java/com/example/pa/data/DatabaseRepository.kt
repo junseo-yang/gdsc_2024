@@ -25,6 +25,5 @@ class DatabaseRepository(private val taskDao: TaskDao) {
     suspend fun insert(task: Tasks) {
         taskDao.insert(task)
         Log.d("DatabaseLog", "Insert database: $task")
-
     }
 }

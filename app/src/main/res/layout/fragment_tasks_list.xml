@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.aigenerate.AiGenerateFragment">
+
+    <TextView
+        android:id="@+id/tasks_list_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="44dp"
+        android:text="@string/tasks_list_title"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableRow
+        android:id="@+id/table_header"
+        android:layout_width="301dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerview_tasks_list"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/recyclerview_tasks_list"
+        app:layout_constraintTop_toBottomOf="@+id/tasks_list_title">
+
+        <TextView
+            android:id="@+id/textViewTask"
+            style="@style/Theme.PA"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:text="@string/list_header_task"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textViewDueDate"
+            style="@style/Theme.PA"
+            android:layout_width="101dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/textViewTask"
+            android:text="@string/list_header_end_date"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_tasks_list"
+        android:layout_width="301dp"
+        android:layout_height="530dp"
+        android:layout_below="@+id/tasks_list_title"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/table_header"
+        tools:listitem="@layout/text_tasks_list_item" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
