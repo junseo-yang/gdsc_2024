@@ -31,6 +31,6 @@
     <string name="ai_generate_topic_button">Generate</string>
     <string name="ai_generate_startDate_input_hint">Start Date (yyyy-mm-dd)</string>
     <string name="ai_generate_endDate_input_hint">Start Date (yyyy-mm-dd)</string>
-    <string name="ai_generate_response_answer">Awaiting AI response...</string>
+    <string name="ai_generate_response_answer">Waiting AI response...</string>
 
 </resources>
