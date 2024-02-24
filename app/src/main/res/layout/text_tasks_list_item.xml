@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TableRow
+        android:id="@+id/firstRow"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textViewTask"
+            style="@style/Theme.PA"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/textViewDueDate"
+            style="@style/Theme.PA"
+            android:layout_width="101dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/textViewTask" />
+
+    </TableRow>
+
+</LinearLayout>

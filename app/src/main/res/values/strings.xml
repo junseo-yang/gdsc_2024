@@ -34,4 +34,8 @@
     <string name="ai_generate_duration_input_hint">Duration</string>
     <string name="ai_generate_response_answer">Awaiting AI response...</string>
 
+    <string name="tasks_list_title">Check your next tasks</string>
+    <string name="list_header_task">Task</string>
+    <string name="list_header_end_date">Due Date</string>
+
 </resources>
