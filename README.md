@@ -24,7 +24,7 @@
     <img src="app/src/main/res/drawable/app_logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">ADD Mate</h3>
+<h3 align="center">AddMate</h3>
 
   <p align="center">
     A Planning App with AI Assistant
