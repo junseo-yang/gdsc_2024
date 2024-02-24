@@ -20,12 +20,12 @@ import androidx.room.migration.AutoMigrationSpec
 
 // Define the database with the classes of each table
 // Assign a version for the database
-@Database(entities = [Tasks::class], version = 3,
+@Database(entities = [Tasks::class], version = 4,
     exportSchema = true,
     autoMigrations = [
         AutoMigration (
-            from = 2,
-            to = 3,
+            from = 3,
+            to = 4,
             spec = PlannerDatabase.SetAutoMigration::class
             )
     ]
