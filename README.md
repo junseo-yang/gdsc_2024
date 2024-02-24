@@ -27,7 +27,7 @@
 <h3 align="center">PA (Planning Assistant)</h3>
 
   <p align="center">
-    An Planning App with AI Assistant
+    A Planning App with AI Assistant
     <br />
     <a href="https://github.com/junseo-yang/gdsc_2024"><strong>Explore the docs »</strong></a>
     <br />
